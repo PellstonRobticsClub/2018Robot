@@ -5,6 +5,7 @@ import org.usfirst.frc.team5314.robot.commands.liftStopCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Talon;
@@ -14,26 +15,32 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class liftsubsystem extends Subsystem {
-	private Talon liftmotor=new Talon(RobotMap.liftmotor);
+	private WPI_TalonSRX liftMotor1=new WPI_TalonSRX(RobotMap.liftMotor1);
+	private WPI_TalonSRX liftMotor2=new WPI_TalonSRX(RobotMap.liftMotor2);
 	private DigitalInput downLimitSwitch=new DigitalInput(RobotMap.downSwitch);
 	private DigitalInput upLimitSwitch=new DigitalInput(RobotMap.upSwitch);
 	
 	public void up() {
 		if (upLimitSwitch.get()) {
-		liftmotor.set(01.0);	
+		liftMotor1.set(-0.50);
+		liftMotor2.set(-0.50);
 		}else {
-			liftmotor.set(0);	
+			liftMotor1.set(0);
+			liftMotor2.set(0);
 		}
 	}
 public void down() {
 	if (downLimitSwitch.get()) {
-		liftmotor.set(-0.3);
+		liftMotor1.set(0.50);
+		liftMotor2.set(0.50);
 	}else {
-		liftmotor.set(0);
+		liftMotor1.set(0);
+		liftMotor2.set(0);
 	}
 }
 public void stop() {
-	liftmotor.set(0);
+	liftMotor1.set(0);
+	liftMotor2.set(0);
 }
 public Boolean isDownSwitchSet() {
 	return downLimitSwitch.get();

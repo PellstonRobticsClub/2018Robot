@@ -14,7 +14,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakeSubsystem extends Subsystem {
 	private SpeedController intakeMotor1=new Talon(RobotMap.intakeMotor1);
 	private SpeedController intakeMotor2=new Talon(RobotMap.intakeMotor2);
-	
+	private SpeedController intakeMotor3=new Talon(RobotMap.intakeMotor3);
+	private SpeedController intakeMotor4=new Talon(RobotMap.intakeMotor4);
 	
 
     // Put methods for controlling this subsystem
