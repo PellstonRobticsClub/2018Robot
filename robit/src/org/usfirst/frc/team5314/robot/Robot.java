@@ -7,16 +7,30 @@
 
 package org.usfirst.frc.team5314.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer.StaticInterface;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand2;
+import org.usfirst.frc.team5314.robot.commands.autoDoNothing;
+import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchCommand;
 import org.usfirst.frc.team5314.robot.subsystems.DriveTrianSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.JawSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.liftsubsystem;
+
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +47,14 @@ public class Robot extends TimedRobot {
 	public static final JawSubsystem kjawSubsystem = new JawSubsystem();
 	public static OI m_oi;
 	public static Compressor c=new Compressor(0);
+	private static PowerDistributionPanel PDP=new PowerDistributionPanel(0);
+	public static AHRS ahrs =new AHRS(SPI.Port.kMXP);
+	public static final int IMG_WIDTH =320;
+	public static final int IMG_HEIGHT =240;
+	//public static String Data="";
+
+	
+	
 	
 	
 
@@ -46,9 +68,20 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		//m_chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+		m_chooser.addObject("driveForward", new AutoDriveFowardCommand() );
+		 m_chooser.addDefault("Do Nothing", new autoDoNothing() );
+		 m_chooser.addObject("right switch", new  AutoRightSwitchCommand());
+		 m_chooser.addObject("center switch", new  autoCenterSwitchCommand());
+		 m_chooser.addObject("left switch", new  AutoleftSwitchCommand2());
+		 
+		 
+		SmartDashboard.putData("Auto", m_chooser);
+		
+		UsbCamera camera1=CameraServer.getInstance().startAutomaticCapture();
+		camera1.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		UsbCamera camera2=CameraServer.getInstance().startAutomaticCapture();
+		camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		
 	}
 
 	/**
@@ -63,6 +96,10 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void disabledPeriodic() {
+		//Data=DriverStation.getInstance().getGameSpecificMessage();
+		
+			
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -118,6 +155,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		updateStatus();
 		Scheduler.getInstance().run();
 	}
 
@@ -126,5 +164,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		
 	}
+	
+	public void updateStatus() {
+		SmartDashboard.putNumber("amps 8", PDP.getCurrent(8));
+		SmartDashboard.putNumber("amps 9", PDP.getCurrent(9));
+		SmartDashboard.putNumber("amps 10", PDP.getCurrent(10));
+		SmartDashboard.putNumber("amps 11", PDP.getCurrent(11));
+	}
+
 }

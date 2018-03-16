@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDriveFowardCommand extends CommandGroup {
 
     public AutoDriveFowardCommand() {
-    	addSequential(new DriveSetSpeedCommand(.5, 1.0));
+    	addSequential(new closeJawCommand(),.1);
+    	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
     	addSequential(new driveStopCommand());
     	// Add Commands here:
         // e.g. addSequential(new Command1());

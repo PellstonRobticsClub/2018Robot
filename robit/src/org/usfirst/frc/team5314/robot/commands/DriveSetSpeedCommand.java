@@ -8,15 +8,19 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveSetSpeedCommand extends Command {
-	private Double driveSpeed; 
+	private double driveSpeed;
+	private double driveStrafe;
+	private double driveTwist;
 	
 
-    public DriveSetSpeedCommand(Double speed, Double time) {
+    public DriveSetSpeedCommand(double speed,double strafe,double twist, double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	setTimeout(time);
     	requires(Robot.kDriveTrianSubsystem);
-    	driveSpeed=(speed);
+    	driveSpeed=speed;
+    	driveStrafe=strafe;
+    	driveTwist=twist;
     	
     }
 
@@ -26,7 +30,7 @@ public class DriveSetSpeedCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveTrianSubsystem.drive(driveSpeed, 0, 0);
+    	Robot.kDriveTrianSubsystem.drive(driveStrafe, driveSpeed , driveTwist, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

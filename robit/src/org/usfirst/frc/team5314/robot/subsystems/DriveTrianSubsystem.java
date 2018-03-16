@@ -19,8 +19,9 @@ public class DriveTrianSubsystem extends Subsystem {
 	private WPI_TalonSRX leftRearMotor=new WPI_TalonSRX(RobotMap.leftRearMotor);
 	private MecanumDrive MecDrive=new MecanumDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
 	
-	public void drive(double x ,double y , double z) {
+	public void drive(double x ,double y , double z, double gyroAngle) {
 		MecDrive.driveCartesian(x, y, z);
+		//MecDrive.driveCartesian(x, y, z, gyroAngle);
 	}
 
     // Put methods for controlling this subsystem
