@@ -9,8 +9,10 @@ public class AutoDriveFowardCommand extends CommandGroup {
 
     public AutoDriveFowardCommand() {
     	addSequential(new closeJawCommand(),.1);
+    	addSequential(new liftUpCommand(),1);
+    	addSequential(new liftStopCommand(),.1);
     	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
-    	addSequential(new driveStopCommand());
+    	addSequential(new driveStopCommand(),2);
     	// Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

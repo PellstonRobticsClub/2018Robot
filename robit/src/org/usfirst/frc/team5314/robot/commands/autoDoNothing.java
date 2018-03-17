@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class autoDoNothing extends CommandGroup {
 
     public autoDoNothing() {
+    	
     	addSequential(new driveStopCommand());
         // Add Commands here:
         // e.g. addSequential(new Command1());

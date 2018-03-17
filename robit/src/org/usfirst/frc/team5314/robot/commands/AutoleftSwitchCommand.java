@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class AutoleftSwitchCommand2 extends CommandGroup {
+public class AutoleftSwitchCommand extends CommandGroup {
 	
 
-    public AutoleftSwitchCommand2() {
+    public AutoleftSwitchCommand() {
     	
     	addSequential(new closeJawCommand(),.1);
     	addSequential(new liftUpCommand(),1);
@@ -24,11 +24,11 @@ public class AutoleftSwitchCommand2 extends CommandGroup {
     	//SmartDashboard.putString("test", gamedata);
     	//if(gamedata.length()>0) {
     	//	SmartDashboard.putBoolean("test", (gamedata.charAt(0)=='L'));
-    	if(Robot.scaleOnLeft()) {
-    		addSequential(new autointakecontroll(-5),1);
-    		addSequential(new autointakecontroll(0),.2);
+    	
+    	addSequential(new autointakecontroll(-5),1);
+    	addSequential(new autointakecontroll(0),.2);
         		//addSequential(new openJawCommand());	
-        }
+        
     	//}
     	
     	

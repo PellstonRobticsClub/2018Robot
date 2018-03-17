@@ -22,11 +22,11 @@ public class AutoRightSwitchCommand extends CommandGroup {
     	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
     	//SmartDashboard.putString("test", gamedata);
     	//if(gamedata.length()>0) {
-    	if(!Robot.scaleOnLeft()) {
-    		addSequential(new autointakecontroll(-5),1);
-    		addSequential(new autointakecontroll(0),.2);
+    	
+    	addSequential(new autointakecontroll(-5),1);
+    	addSequential(new autointakecontroll(0),.2);
         		//addSequential(new openJawCommand());	
-        }
+        
     	//}
     	
     	

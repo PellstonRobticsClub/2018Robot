@@ -22,11 +22,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import java.util.logging.Logger;
 
+import org.usfirst.frc.team5314.robot.commands.AutoCenterSwitchTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoLeftTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
-import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand2;
+import org.usfirst.frc.team5314.robot.commands.AutoRightTestCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.autoDoNothing;
-import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchCommand;
+import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchLeftCommand;
 import org.usfirst.frc.team5314.robot.subsystems.DriveTrianSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.JawSubsystem;
@@ -54,6 +57,7 @@ public class Robot extends TimedRobot {
 	public static final int IMG_WIDTH =320;
 	public static final int IMG_HEIGHT =240;
 	private static Boolean fmsSwitchOnLeft=true;
+	private static Boolean fmsMessageRecieved =false;
 	//public static String Data="";
 
 	
@@ -73,9 +77,9 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		m_chooser.addObject("driveForward", new AutoDriveFowardCommand() );
 		 m_chooser.addDefault("Do Nothing", new autoDoNothing() );
-		 m_chooser.addObject("right switch", new  AutoRightSwitchCommand());
-		 m_chooser.addObject("center switch", new  autoCenterSwitchCommand());
-		 m_chooser.addObject("left switch", new  AutoleftSwitchCommand2());
+		 m_chooser.addObject("right switch", new  AutoRightTestCommand());
+		 m_chooser.addObject("center switch", new  AutoCenterSwitchTestCommand());
+		 m_chooser.addObject("left switch", new  AutoLeftTestCommand());
 		 
 		 
 		SmartDashboard.putData("Auto", m_chooser);
@@ -119,11 +123,16 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		String msg=DriverStation.getInstance().getGameSpecificMessage();
+		String msg=null;
 		while(msg ==null||msg.length()<2) {
 			msg=DriverStation.getInstance().getGameSpecificMessage();
 		}
+		if (msg.length()>0){
+			fmsMessageRecieved=true;
+		}
 		fmsSwitchOnLeft= msg.substring(0,1).equals("L");
+		SmartDashboard.putBoolean("fms msg recieved", fmsMessageRecieved);
+		SmartDashboard.putBoolean("fms Switch on Left", fmsSwitchOnLeft);
 		
 		//Logger.info("FMS auto message: "+msg);
 		
