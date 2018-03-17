@@ -21,19 +21,20 @@ public class LEDSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void periodic() {
+    	DriverStation.Alliance color;
+		color = DriverStation.getInstance().getAlliance();
     	if (!Robot.kLiftSubsystem.isupSwitchSet()){
     		blinkin.set(0.77 );
     	}else if(!Robot.kLiftSubsystem.isDownSwitchSet()) {
     		blinkin.set(0.65 );
+    	} else if(color == DriverStation.Alliance.Blue){ 
+    		blinkin.set(-0.29 );
+    	}else if(color == DriverStation.Alliance.Red) {
+    		blinkin.set(-0.31  );
     	} else {
-    		DriverStation.Alliance color;
-    		color = DriverStation.getInstance().getAlliance();
-    		if(color == DriverStation.Alliance.Blue){
-    			blinkin.set(-0.29 );
-    		} else {
-    			blinkin.set(-0.31  );
-    		}
+    		blinkin.set(-0.55);
     	}
+    	
     }
 }
 
