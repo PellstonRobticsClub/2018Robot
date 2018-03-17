@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import java.util.logging.Logger;
+
 import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand2;
@@ -51,6 +53,7 @@ public class Robot extends TimedRobot {
 	public static AHRS ahrs =new AHRS(SPI.Port.kMXP);
 	public static final int IMG_WIDTH =320;
 	public static final int IMG_HEIGHT =240;
+	private static Boolean fmsSwitchOnLeft=true;
 	//public static String Data="";
 
 	
@@ -116,6 +119,14 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		String msg=DriverStation.getInstance().getGameSpecificMessage();
+		while(msg ==null||msg.length()<2) {
+			msg=DriverStation.getInstance().getGameSpecificMessage();
+		}
+		fmsSwitchOnLeft= msg.substring(0,1).equals("L");
+		
+		//Logger.info("FMS auto message: "+msg);
+		
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -172,6 +183,9 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("amps 9", PDP.getCurrent(9));
 		SmartDashboard.putNumber("amps 10", PDP.getCurrent(10));
 		SmartDashboard.putNumber("amps 11", PDP.getCurrent(11));
+	}
+	public static boolean scaleOnLeft() {
+		return fmsSwitchOnLeft;
 	}
 
 }
