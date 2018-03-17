@@ -18,16 +18,16 @@ public class AutoRightSwitchCommand extends CommandGroup {
     	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
     	
     	addSequential(new driveStopCommand(),2);
-    	String gamedata;
-    	gamedata=DriverStation.getInstance().getGameSpecificMessage();
-    	SmartDashboard.putString("test", gamedata);
-    	if(gamedata.length()>0) {
-    		if(gamedata.charAt(0)=='R') {
-    			addSequential(new autointakecontroll(-5),1);
-    			addSequential(new autointakecontroll(0),.2);
+    	//String gamedata;
+    	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
+    	//SmartDashboard.putString("test", gamedata);
+    	//if(gamedata.length()>0) {
+    	if(!Robot.scaleOnLeft()) {
+    		addSequential(new autointakecontroll(-5),1);
+    		addSequential(new autointakecontroll(0),.2);
         		//addSequential(new openJawCommand());	
-        	}
-    	}
+        }
+    	//}
     	
     	
     	// Add Commands here:

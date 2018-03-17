@@ -19,17 +19,17 @@ public class AutoleftSwitchCommand2 extends CommandGroup {
     	addSequential(new liftStopCommand(),.1);
     	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
     	addSequential(new driveStopCommand(),2);
-    	String gamedata;
-    	gamedata=DriverStation.getInstance().getGameSpecificMessage();
-    	SmartDashboard.putString("test", gamedata);
-    	if(gamedata.length()>0) {
-    		SmartDashboard.putBoolean("test", (gamedata.charAt(0)=='L'));
-    		if(gamedata.charAt(0)=='L') {
-    			addSequential(new autointakecontroll(-5),1);
-    			addSequential(new autointakecontroll(0),.2);
+    	//String gamedata;
+    	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
+    	//SmartDashboard.putString("test", gamedata);
+    	//if(gamedata.length()>0) {
+    	//	SmartDashboard.putBoolean("test", (gamedata.charAt(0)=='L'));
+    	if(Robot.scaleOnLeft()) {
+    		addSequential(new autointakecontroll(-5),1);
+    		addSequential(new autointakecontroll(0),.2);
         		//addSequential(new openJawCommand());	
-        	}
-    	}
+        }
+    	//}
     	
     	
     	// Add Commands here:

@@ -16,25 +16,20 @@ public class autoCenterSwitchCommand extends CommandGroup {
     	addSequential(new closeJawCommand(),.1);
     	addSequential(new liftUpCommand(),1);
     	addSequential(new liftStopCommand(),.1);
-    	String gamedata;
-    	gamedata=DriverStation.getInstance().getGameSpecificMessage();
-    	SmartDashboard.putString("test", gamedata);
-    	if(gamedata.length()>0) {
-        	if(gamedata.charAt(0)=='L') {
+    	//String gamedata;
+    	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
+    	//SmartDashboard.putString("test", gamedata);
+    	//if(gamedata.length()>0) {
+        if(Robot.scaleOnLeft()) {//gamedata.charAt(0)=='L') {
     		addSequential(new DriveSetSpeedCommand(.0 , .0 , -.4 , .5));
-    		addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
     	}else {
     		addSequential(new DriveSetSpeedCommand(.0 , .0 , .4 , .5));
-    		addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
     	}
-	
-    	}
+        addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
     	addSequential(new driveStopCommand(),2);
-    	if(gamedata.length()>0) {
-    		addSequential(new autointakecontroll(-5),1);
-			addSequential(new autointakecontroll(0),.2);
+    	addSequential(new autointakecontroll(-5),1);
+		addSequential(new autointakecontroll(0),.2);
     		//addSequential(new openJawCommand(),.1);
-    	}
     	
    
         // Add Commands here:
