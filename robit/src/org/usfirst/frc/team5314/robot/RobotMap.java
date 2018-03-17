@@ -35,6 +35,7 @@ public class RobotMap {
 	public static int intakeMotor4=3;
 	
 	public static int liftmotor=2;
+	public static int Blinkin=9;
 //digital input
 	public static int downSwitch=0;
 	public static int upSwitch=1;

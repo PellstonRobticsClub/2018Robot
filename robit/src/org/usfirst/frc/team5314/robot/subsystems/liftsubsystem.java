@@ -22,8 +22,8 @@ public class liftsubsystem extends Subsystem {
 	
 	public void up() {
 		if (upLimitSwitch.get()) {
-		liftMotor1.set(-0.50);
-		liftMotor2.set(-0.50);
+		liftMotor1.set(-0.60);
+		liftMotor2.set(-0.60);
 		}else {
 			liftMotor1.set(0);
 			liftMotor2.set(0);
@@ -31,8 +31,8 @@ public class liftsubsystem extends Subsystem {
 	}
 public void down() {
 	if (downLimitSwitch.get()) {
-		liftMotor1.set(0.50);
-		liftMotor2.set(0.50);
+		liftMotor1.set(0.60);
+		liftMotor2.set(0.60);
 	}else {
 		liftMotor1.set(0);
 		liftMotor2.set(0);
