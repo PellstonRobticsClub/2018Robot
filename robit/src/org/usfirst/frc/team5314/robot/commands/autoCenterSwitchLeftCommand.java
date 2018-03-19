@@ -16,10 +16,7 @@ public class autoCenterSwitchLeftCommand extends CommandGroup {
     	addSequential(new closeJawCommand(),.1);
     	addSequential(new liftUpCommand(),1);
     	addSequential(new liftStopCommand(),.1);
-    	//String gamedata;
-    	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
-    	//SmartDashboard.putString("test", gamedata);
-    	//if(gamedata.length()>0) {
+
        
     	addSequential(new DriveSetSpeedCommand(.0 , .0 , -.4 , .5));
         addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
@@ -28,7 +25,10 @@ public class autoCenterSwitchLeftCommand extends CommandGroup {
     	addSequential(new autointakecontroll(-5),1);
 		addSequential(new autointakecontroll(0),.2);
     		//addSequential(new openJawCommand(),.1);
-    	
+    	    	//String gamedata;
+    	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
+    	//SmartDashboard.putString("test", gamedata);
+    	//if(gamedata.length()>0) {
    
         // Add Commands here:
         // e.g. addSequential(new Command1());

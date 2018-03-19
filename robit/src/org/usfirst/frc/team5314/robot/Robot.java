@@ -33,6 +33,7 @@ import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchLeftCommand;
 import org.usfirst.frc.team5314.robot.subsystems.DriveTrianSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.JawSubsystem;
+import org.usfirst.frc.team5314.robot.subsystems.LEDSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.liftsubsystem;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -50,6 +51,7 @@ public class Robot extends TimedRobot {
 	public static final DriveTrianSubsystem kDriveTrianSubsystem=new DriveTrianSubsystem();
 	public static final IntakeSubsystem kIntakeSubsystem=new IntakeSubsystem();
 	public static final JawSubsystem kjawSubsystem = new JawSubsystem();
+	public static final LEDSubsystem kLEDSubsystem = new LEDSubsystem();
 	public static OI m_oi;
 	public static Compressor c=new Compressor(0);
 	private static PowerDistributionPanel PDP=new PowerDistributionPanel(0);
