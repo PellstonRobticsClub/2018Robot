@@ -4,7 +4,7 @@ import org.usfirst.frc.team5314.robot.Robot;
 import org.usfirst.frc.team5314.robot.RobotMap;
 import org.usfirst.frc.team5314.robot.commands.driveWithJoystick;
 
-
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -22,6 +22,12 @@ public class DriveTrianSubsystem extends Subsystem {
 	private WPI_TalonSRX rightRearMotor=new WPI_TalonSRX(RobotMap.rightRearMotor);
 	private WPI_TalonSRX leftRearMotor=new WPI_TalonSRX(RobotMap.leftRearMotor);
 	private MecanumDrive MecDrive=new MecanumDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
+	
+	public DriveTrianSubsystem() {
+		
+		leftRearMotor.setSensorPhase(true);
+		leftRearMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+	}
 	
 	public void drive(double x ,double y , double z, double gyroAngle) {
 		//MecDrive.driveCartesian(x, y, z);
@@ -44,11 +50,18 @@ public class DriveTrianSubsystem extends Subsystem {
     	SmartDashboard.putNumber("distance",inches);
     	SmartDashboard.putNumber("Right Encoder", rightRearMotor.getSensorCollection().getQuadraturePosition());
     	SmartDashboard.putNumber("left Encoder", leftRearMotor.getSensorCollection().getQuadraturePosition());
+    	SmartDashboard.putNumber("Left Selected Encoder",leftRearMotor.getSelectedSensorPosition(0) );
     }
     public void resetEnc(){
     	rightRearMotor.getSensorCollection().setQuadraturePosition(0, 10);
     	leftRearMotor.getSensorCollection().setQuadraturePosition(0, 10);
     	
+    }
+    public double getEncoder() {
+    	return leftRearMotor.getSelectedSensorPosition(0);	
+    }
+    public void resetEncoder() {
+    	leftRearMotor.getSensorCollection().setQuadraturePosition(0, 1);
     }
 }
 

@@ -15,13 +15,16 @@ public class AutoleftScaleCommand extends CommandGroup {
     public AutoleftScaleCommand() {
     	
     	addSequential(new closeJawCommand(),.1);
-    	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 2.0));
-    	addSequential(new driveStopCommand(),2);
+    	//addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 2.0));
+    	//addSequential(new driveStopCommand(),2);
+    	addSequential(new driveToXDistance(6));
     	addSequential(new liftUpCommand(),2);
     	addSequential(new liftStopCommand(),.1);
     	addSequential(new autointakecontroll(-5),1);
     	addSequential(new autointakecontroll(0),.2);
-        //String gamedata;
+       
+    	
+    	//String gamedata;
     	//addSequential(new openJawCommand());	
         //gamedata=DriverStation.getInstance().getGameSpecificMessage();
     	//SmartDashboard.putString("test", gamedata);

@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import org.usfirst.frc.team5314.robot.commands.AutoCenterSwitchTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoLeftScaleTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoLeftTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightTestCommand;
@@ -77,12 +78,12 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		m_chooser.addObject("driveForward", new AutoDriveFowardCommand() );
 		 m_chooser.addDefault("Do Nothing", new autoDoNothing() );
+	     m_chooser.addObject("driveForward", new AutoDriveFowardCommand() );
 		 m_chooser.addObject("right switch", new  AutoRightTestCommand());
 		 m_chooser.addObject("center switch", new  AutoCenterSwitchTestCommand());
 		 m_chooser.addObject("left switch", new  AutoLeftTestCommand());
-		 
+		 m_chooser.addObject("left scale", new AutoLeftScaleTestCommand());
 		 
 		SmartDashboard.putData("Auto", m_chooser);
 		
