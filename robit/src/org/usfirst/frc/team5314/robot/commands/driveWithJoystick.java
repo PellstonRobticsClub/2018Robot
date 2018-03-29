@@ -21,7 +21,7 @@ public class driveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.kDriveTrianSubsystem.drive(Robot.m_oi.getDriveX(), Robot.m_oi.getDrivey(), Robot.m_oi.getDrivez(),Robot.ahrs.getRoll());
+    	Robot.kDriveTrianSubsystem.drive(Robot.m_oi.getDriveX(), Robot.m_oi.getDrivey(), Robot.m_oi.getDrivez(),-(Robot.ahrs.getAngle()));
     }
 
     // Make this return true when this Command no longer needs to run execute()
