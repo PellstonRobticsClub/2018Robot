@@ -9,11 +9,25 @@ public class AutoDriveFowardCommand extends CommandGroup {
 
     public AutoDriveFowardCommand() {
     	addSequential(new closeJawCommand(),.1);
-    	addSequential(new liftUpCommand(),1);
+    	addParallel(new liftUpCommand(),1);
+    	addSequential(new driveToXDistanceCommand(19,1));
     	addSequential(new liftStopCommand(),.1);
-    	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
-    	addSequential(new driveStopCommand(),2);
+    	addSequential(new rotateToAngleCommmand(90));
+    	addSequential(new driveToXDistanceCommand(17,.7));
+    	addParallel(new liftUpCommand(),2.5);
+    	addSequential(new rotateToAngleCommmand(-30));
+    	addSequential(new driveToXDistanceCommand(2.3, .7));
+    	addSequential(new autointakecontroll(-.5),1);
+    	addSequential(new autointakecontroll(0),.1);
+    	addSequential(new driveToXDistanceCommand(-2.3,.7));
+       	addParallel(new liftDownCommand(),3);
+       	addSequential(new rotateToAngleCommmand(180));
+       	addSequential(new liftStopCommand(),.1);  
+    	
     	// Add Commands here:
+    	  	
+    //	addSequential(new DriveSetSpeedCommand(.5 , 0 , 0 , 1.0));
+    //	addSequential(new driveStopCommand(),2);
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

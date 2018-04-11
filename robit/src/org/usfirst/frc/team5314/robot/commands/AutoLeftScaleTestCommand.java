@@ -13,7 +13,7 @@ public class AutoLeftScaleTestCommand extends ConditionalCommand {
 	@Override
 	protected boolean condition() {
 		// TODO Auto-generated method stub
-		return DriverStation.getInstance().getGameSpecificMessage().charAt(0)=='L';
+		return DriverStation.getInstance().getGameSpecificMessage().charAt(1)=='L';
 	}
 
 

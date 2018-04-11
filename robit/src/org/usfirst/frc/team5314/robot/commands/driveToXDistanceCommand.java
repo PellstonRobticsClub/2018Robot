@@ -4,19 +4,23 @@ import org.usfirst.frc.team5314.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class driveToXDistance extends PIDCommand {
+public class driveToXDistanceCommand extends PIDCommand {
 
 	private double distance;
+	private double angle;
 	
-    public driveToXDistance(double feet) {
-     super("driveToXDistance", .02, 0, .002, .02);
-     getPIDController().setAbsoluteTolerance(100);
-     getPIDController().setOutputRange(-.4, .4); 
-     distance=feet*1360;
+    public driveToXDistanceCommand(double feet,double Maxspeed) {
+     super("driveToXDistanceCommand", .0001, 0, .002, .02);
+     angle = Robot.ahrs.getAngle();
+     getPIDController().setAbsoluteTolerance(300);
+     getPIDController().setOutputRange(-Maxspeed, Maxspeed);
+     distance=feet*2329;
+ 
      requires(Robot.kDriveTrianSubsystem);
      Robot.kDriveTrianSubsystem.resetEncoder();
      
@@ -35,8 +39,11 @@ public class driveToXDistance extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
     	int sign =(int)Math.signum(output);
-    	double minSpeed=.15;
+    	double minSpeed=.2;
     	double finaloutput=sign*Math.max(minSpeed, Math.abs(output));
+    	double error = Robot.ahrs.getAngle()-angle;
+    	error*= .1;
+    	
     	Robot.kDriveTrianSubsystem.drive(0, finaloutput, 0, 0);
     	
     	
@@ -44,7 +51,9 @@ public class driveToXDistance extends PIDCommand {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	this.setTimeout(3);
+    	this.setTimeout(5);
+    	
+        SmartDashboard.putNumber("target", distance);
     	Robot.kDriveTrianSubsystem.resetEncoder();
     	getPIDController().setSetpoint(distance);
     	
@@ -53,6 +62,7 @@ public class driveToXDistance extends PIDCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("setpoint", getPIDController().getSetpoint());
     }
 
     // Make this return true when this Command no longer needs to run execute()

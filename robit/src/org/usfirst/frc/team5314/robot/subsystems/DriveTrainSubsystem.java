@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveTrianSubsystem extends Subsystem {
+public class DriveTrainSubsystem extends Subsystem {
 	private AnalogInput DistanceSenor=new AnalogInput(0);
 	private WPI_TalonSRX rightFrontMotor=new WPI_TalonSRX(RobotMap.rightFrontMotor);
 	private WPI_TalonSRX leftFrontMotor=new WPI_TalonSRX(RobotMap.leftFrontMotor);
@@ -23,7 +23,7 @@ public class DriveTrianSubsystem extends Subsystem {
 	private WPI_TalonSRX leftRearMotor=new WPI_TalonSRX(RobotMap.leftRearMotor);
 	private MecanumDrive MecDrive=new MecanumDrive(leftFrontMotor, leftRearMotor, rightFrontMotor, rightRearMotor);
 	
-	public DriveTrianSubsystem() {
+	public DriveTrainSubsystem() {
 		
 		leftRearMotor.setSensorPhase(true);
 		leftRearMotor.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
@@ -31,6 +31,7 @@ public class DriveTrianSubsystem extends Subsystem {
 	
 	public void drive(double x ,double y , double z, double gyroAngle) {
 		//MecDrive.driveCartesian(x, y, z);
+		SmartDashboard.putNumber("speed", y);
 		MecDrive.driveCartesian(x, y, z, gyroAngle);
 	}
 

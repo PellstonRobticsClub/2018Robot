@@ -22,7 +22,7 @@ public class RobotMap {
 	public static int leftFrontMotor=4;
     public static int liftMotor1=5;
     public static int liftMotor2=6;
-	
+		public static int liftMotor3=7;
 	//usb
 	public static int drivestick=0;
 //pwm
@@ -39,6 +39,7 @@ public class RobotMap {
 //digital input
 	public static int downSwitch=0;
 	public static int upSwitch=1;
+
 	
 
 }

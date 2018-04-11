@@ -20,11 +20,12 @@ public class autoCenterSwitchRightCommand extends CommandGroup {
     	//gamedata=DriverStation.getInstance().getGameSpecificMessage();
     	//SmartDashboard.putString("test", gamedata);
     	//if(gamedata.length()>0) {
-       
-    	addSequential(new DriveSetSpeedCommand(.0 , .0 , .4 , .5));
+       addSequential(new rotateToAngleCommmand(25));
+    	//addSequential(new DriveSetSpeedCommand(.0 , .0 , .4 , .5));
         addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
     	addSequential(new driveStopCommand(),2);
-    	addSequential(new DriveSetSpeedCommand(.3, 0, 0, .2));
+    	addSequential(new rotateToAngleCommmand(0));
+    	addSequential(new DriveSetSpeedCommand(.3, 0, 0, .5));
     	addSequential(new autointakecontroll(-5),1);
 		addSequential(new autointakecontroll(0),.2);
     		//addSequential(new openJawCommand(),.1);

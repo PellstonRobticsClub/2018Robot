@@ -26,12 +26,13 @@ import org.usfirst.frc.team5314.robot.commands.AutoCenterSwitchTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoLeftScaleTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoLeftTestCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoRightScaleCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.autoDoNothing;
 import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchLeftCommand;
-import org.usfirst.frc.team5314.robot.subsystems.DriveTrianSubsystem;
+import org.usfirst.frc.team5314.robot.subsystems.DriveTrainSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.JawSubsystem;
 import org.usfirst.frc.team5314.robot.subsystems.LEDSubsystem;
@@ -49,7 +50,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends TimedRobot {
 
 	public static final liftsubsystem kLiftSubsystem=new liftsubsystem();
-	public static final DriveTrianSubsystem kDriveTrianSubsystem=new DriveTrianSubsystem();
+	public static final DriveTrainSubsystem kDriveTrianSubsystem=new DriveTrainSubsystem();
 	public static final IntakeSubsystem kIntakeSubsystem=new IntakeSubsystem();
 	public static final JawSubsystem kjawSubsystem = new JawSubsystem();
 	public static final LEDSubsystem kLEDSubsystem = new LEDSubsystem();
@@ -84,6 +85,7 @@ public class Robot extends TimedRobot {
 		 m_chooser.addObject("center switch", new  AutoCenterSwitchTestCommand());
 		 m_chooser.addObject("left switch", new  AutoLeftTestCommand());
 		 m_chooser.addObject("left scale", new AutoLeftScaleTestCommand());
+		 m_chooser.addObject("right scale", new AutoRightScaleCommand());
 		 
 		SmartDashboard.putData("Auto", m_chooser);
 		
