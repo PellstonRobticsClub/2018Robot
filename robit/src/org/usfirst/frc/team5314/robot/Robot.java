@@ -23,12 +23,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.logging.Logger;
 
 import org.usfirst.frc.team5314.robot.commands.AutoCenterSwitchTestCommand;
-import org.usfirst.frc.team5314.robot.commands.AutoDriveFowardCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoLeft2ScaleCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoLeftScaleLeftOnlyTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoLeftScaleTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoLeftTestCommand;
-import org.usfirst.frc.team5314.robot.commands.AutoRightScaleCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoRightScaleRightOnlyCommand;
+import org.usfirst.frc.team5314.robot.commands.AutoRightScaleTestCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.AutoRightTestCommand;
+import org.usfirst.frc.team5314.robot.commands.Autodrivefoward;
 import org.usfirst.frc.team5314.robot.commands.AutoleftSwitchCommand;
 import org.usfirst.frc.team5314.robot.commands.autoDoNothing;
 import org.usfirst.frc.team5314.robot.commands.autoCenterSwitchLeftCommand;
@@ -80,12 +83,15 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		m_oi = new OI();
 		 m_chooser.addDefault("Do Nothing", new autoDoNothing() );
-	     m_chooser.addObject("driveForward", new AutoDriveFowardCommand() );
+	     m_chooser.addObject("driveForward", new Autodrivefoward() );
 		 m_chooser.addObject("right switch", new  AutoRightTestCommand());
 		 m_chooser.addObject("center switch", new  AutoCenterSwitchTestCommand());
 		 m_chooser.addObject("left switch", new  AutoLeftTestCommand());
 		 m_chooser.addObject("left scale", new AutoLeftScaleTestCommand());
-		 m_chooser.addObject("right scale", new AutoRightScaleCommand());
+		 m_chooser.addObject("right scale", new AutoRightScaleTestCommand());
+		 m_chooser.addObject("left Scale Left Only", new AutoLeftScaleLeftOnlyTestCommand());
+		 m_chooser.addObject("Right Scale Right Only", new AutoRightScaleRightOnlyCommand());
+		 
 		 
 		SmartDashboard.putData("Auto", m_chooser);
 		
@@ -93,9 +99,10 @@ public class Robot extends TimedRobot {
 		camera1.setResolution(IMG_WIDTH, IMG_HEIGHT);
 		UsbCamera camera2=CameraServer.getInstance().startAutomaticCapture();
 		camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
+		camera1.setFPS(10);
+		camera2.setFPS(10);
 		
 	}
-
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -128,6 +135,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		kLiftSubsystem.setup();
+		kDriveTrianSubsystem.setupAuto();
 		String msg=null;
 		while(msg ==null||msg.length()<2) {
 			msg=DriverStation.getInstance().getGameSpecificMessage();
@@ -166,6 +175,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		kLiftSubsystem.setup();
+		//kDriveTrianSubsystem.setuptele();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
 public class AutoLeftScaleTestCommand extends ConditionalCommand {
 	
 	public AutoLeftScaleTestCommand() {
-		super(new AutoleftScaleCommand(),new AutoDriveFowardCommand());
+		super(new AutoleftScaleCommand(),new AutoLeft2ScaleCommand());
 	}
 
 	@Override

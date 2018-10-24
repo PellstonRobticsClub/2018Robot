@@ -10,7 +10,6 @@ package org.usfirst.frc.team5314.robot;
 import java.awt.Button;
 
 import org.usfirst.frc.team5314.robot.commands.closeJawCommand;
-import org.usfirst.frc.team5314.robot.commands.liftDownBackupCommand;
 import org.usfirst.frc.team5314.robot.commands.liftDownCommand;
 import org.usfirst.frc.team5314.robot.commands.liftUpCommand;
 import org.usfirst.frc.team5314.robot.commands.openJawCommand;
@@ -51,7 +50,7 @@ public class OI {
 		buttonY.whenPressed(new openJawCommand());
 		buttonA.whileHeld(new liftDownCommand());
 		buttonB.whileHeld(new liftUpCommand());
-		buttonRB.whileHeld(new liftDownBackupCommand());
+		
 	}
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

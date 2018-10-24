@@ -64,6 +64,19 @@ public class DriveTrainSubsystem extends Subsystem {
     public void resetEncoder() {
     	leftRearMotor.getSensorCollection().setQuadraturePosition(0, 1);
     }
+    	 public void setupAuto() {
+    rightFrontMotor.configOpenloopRamp(0, 10);
+    	leftFrontMotor.configOpenloopRamp(0, 10);
+    	rightRearMotor.configOpenloopRamp(0, 10);
+    	leftRearMotor.configOpenloopRamp(0, 10);
+    }
+    public void setuptele() {
+    	rightFrontMotor.configOpenloopRamp(0, 10);
+    	leftFrontMotor.configOpenloopRamp(0, 10);
+    	rightRearMotor.configOpenloopRamp(0, 10);
+    	leftRearMotor.configOpenloopRamp(0, 10);
+    	
+    }
 }
 
    // Set the default command for a subsystem here.

@@ -20,8 +20,8 @@ public class RobotMap {
 	public static int rightFrontMotor=2;
 	public static int rightRearMotor=3;
 	public static int leftFrontMotor=4;
-    public static int liftMotor1=5;
-    public static int liftMotor2=6;
+    public static int liftMotor1=6;
+    public static int liftMotor2=5;
 		public static int liftMotor3=7;
 	//usb
 	public static int drivestick=0;

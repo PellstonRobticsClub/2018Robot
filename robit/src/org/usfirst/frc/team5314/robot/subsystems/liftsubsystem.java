@@ -23,43 +23,36 @@ public class liftsubsystem extends Subsystem {
 	private DigitalInput downLimitSwitch=new DigitalInput(RobotMap.downSwitch);
 	private DigitalInput upLimitSwitch=new DigitalInput(RobotMap.upSwitch);
 	
+	public liftsubsystem() {
+		liftMotor2.follow(liftMotor1);
+	}
+	
 	public void up() {
-		if (upLimitSwitch.get()) {
-		liftMotor1.set(-0.60);
-		liftMotor2.set(-0.60);
+	//	if (upLimitSwitch.get()) {
+		liftMotor1.set(-01.0);
+		//liftMotor2.set(-01.0);
+		liftMotor2.set(ControlMode.Follower, RobotMap.liftMotor1);
 		
-		}else {
-			liftMotor1.set(0);
-			liftMotor2.set(0);
-		}
+		//}else {
+			//liftMotor1.set(0);
+		//liftMotor2.set(0);
+	//}
 			liftMotor3.set(-01.0);
 	}
 public void down() {
-	if (downLimitSwitch.get()) {
-		liftMotor1.set(0.60);
-		liftMotor2.set(0.60);
+	//if (downLimitSwitch.get()) {
+		liftMotor1.set(01.0);
+		//liftMotor2.set(01.0);
+		liftMotor2.set(ControlMode.Follower, RobotMap.liftMotor1);
+	//}else {
+		//liftMotor1.set(0);
+		//liftMotor2.set(0);
 		
-	}else {
-		liftMotor1.set(0);
-		liftMotor2.set(0);
-		
-	}
+	//}
 
 		liftMotor3.set(01.0);
 }
-public void downBackup() {
-	if (downLimitSwitch.get() && liftMotor3.getSensorCollection().isFwdLimitSwitchClosed()) {
-		liftMotor1.set(0.60);
-		liftMotor2.set(0.60);
-		
-	}else {
-		liftMotor1.set(0);
-		liftMotor2.set(0);
-		
-	}
 
-		liftMotor3.set(01.0);
-}
 public void stop() {
 	liftMotor1.set(0);
 	liftMotor2.set(0);
@@ -88,6 +81,13 @@ public Boolean isupSwitchSet() {
     	SmartDashboard.putBoolean("upper switch", liftMotor3.getSensorCollection().isFwdLimitSwitchClosed());
     	SmartDashboard.putBoolean("lower switch", liftMotor3.getSensorCollection().isRevLimitSwitchClosed());
     	SmartDashboard.putNumber("lift speed", liftMotor3.getMotorOutputPercent());
+    	
+    }
+    public void setup () {
+    	liftMotor1.configOpenloopRamp(1, 10);
+    	liftMotor2.configOpenloopRamp(1, 10);
+    	liftMotor2.follow(liftMotor1);
+    	
     }
     
 }

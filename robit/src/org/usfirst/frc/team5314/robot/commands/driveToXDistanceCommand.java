@@ -15,9 +15,9 @@ public class driveToXDistanceCommand extends PIDCommand {
 	private double angle;
 	
     public driveToXDistanceCommand(double feet,double Maxspeed) {
-     super("driveToXDistanceCommand", .0001, 0, .002, .02);
+     super("driveToXDistanceCommand", .0002, 0, .002, .02);
      angle = Robot.ahrs.getAngle();
-     getPIDController().setAbsoluteTolerance(300);
+     getPIDController().setAbsoluteTolerance(500);
      getPIDController().setOutputRange(-Maxspeed, Maxspeed);
      distance=feet*2329;
  
@@ -39,7 +39,7 @@ public class driveToXDistanceCommand extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
     	int sign =(int)Math.signum(output);
-    	double minSpeed=.2;
+    	double minSpeed=.3;
     	double finaloutput=sign*Math.max(minSpeed, Math.abs(output));
     	double error = Robot.ahrs.getAngle()-angle;
     	error*= .1;

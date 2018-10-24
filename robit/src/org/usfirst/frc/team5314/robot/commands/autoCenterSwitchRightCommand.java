@@ -28,6 +28,9 @@ public class autoCenterSwitchRightCommand extends CommandGroup {
     	addSequential(new DriveSetSpeedCommand(.3, 0, 0, .5));
     	addSequential(new autointakecontroll(-5),1);
 		addSequential(new autointakecontroll(0),.2);
+		addSequential(new driveToXDistanceCommand(-1, .7));
+		addParallel(new  rotateToAngleCommmand(-90));
+		addSequential(new liftDownCommand(),.6);
     		//addSequential(new openJawCommand(),.1);
     	
    

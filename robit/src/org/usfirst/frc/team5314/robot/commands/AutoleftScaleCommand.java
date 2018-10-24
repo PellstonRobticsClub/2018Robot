@@ -15,25 +15,41 @@ public class AutoleftScaleCommand extends CommandGroup {
     public AutoleftScaleCommand() {
     	
     	addSequential(new closeJawCommand(),.1);
-    	addParallel(new liftUpCommand(),3.5);
-    	addSequential(new driveToXDistanceCommand(20,1));
+    	addParallel(new liftUpCommand(),2.3);
+    	addSequential(new driveToXDistanceCommand(20,1));   
     	addSequential(new rotateToAngleCommmand(30));
-    	//addSequential(new liftUpCommand(),2);
     	addSequential(new liftStopCommand(),.1);    
     	addSequential(new driveToXDistanceCommand(2.3,.7));
-    	addSequential(new autointakecontroll(-.5),1);
+    	addSequential(new autointakecontroll(-.25),2);
     	addSequential(new autointakecontroll(0),.1);
-    	addSequential(new driveToXDistanceCommand(-3,.7));
-       	addParallel(new liftDownCommand(),3);
-       	addSequential(new rotateToAngleCommmand(180));
-       	addSequential(new liftStopCommand(),.1);  
-    	//String gamedata;
+    	addSequential(new driveToXDistanceCommand(-2,.7));
+       	addParallel(new liftDownCommand(),2.3);
+       	addSequential(new rotateToAngleCommmand(150));
+       	addSequential(new liftStopCommand(),.1);
+    //  addsequential(new openJawCommand(),.1 	
+    // addparallel(new driveToXDistanceCommand(1,.7)):
+    //  addSequential(new autointakecontroll(.5),4);
+    //	addSequential(new autointakecontroll(0),.1);
+    //  addsequential(new closeJawCommand(),.1); 	
+    //  addsequential(new driveToXDistance(-1,.7)); 
+    //  addparallel(new rotateToAngleCommand(30));
+    //  addsequential(new liftUpCommand(),2.6);
+    //  addsequential(new driveToXDistanceCommand(2.3,.7)); 	
+    //  addSequential(new autointakecontroll(-.25),2);
+    //	addSequential(new autointakecontroll(0),.1); 	
+    //  addsequential(new driveToXDistanceCommand(-2.3,.7));	
+    //  addParallel(new liftDownCommand(),2.3); 
+    //  addSequential(new rotateToAngleCommmand(130)); 	
+    	
+       	
+       	
+       	//String gamedata;
     	//addSequential(new openJawCommand());	
         //gamedata=DriverStation.getInstance().getGameSpecificMessage();
     	//SmartDashboard.putString("test", gamedata);
     	//if(gamedata.length()>0) {
     	//	SmartDashboard.putBoolean("test", (gamedata.charAt(0)=='L'));
-    	
+    	//addSequential(new liftUpCommand(),2);
     	//}
     	
     	

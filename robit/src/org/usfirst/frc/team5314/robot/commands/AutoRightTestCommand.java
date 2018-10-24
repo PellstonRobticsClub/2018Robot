@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.ConditionalCommand;
 public class AutoRightTestCommand extends ConditionalCommand {
 	
 	public AutoRightTestCommand() {
-		super(new AutoDriveFowardCommand(),new AutoRightSwitchCommand());
+		super(new AutoLeft2ScaleCommand(),new AutoRightSwitchCommand());
 	}
 
 	@Override

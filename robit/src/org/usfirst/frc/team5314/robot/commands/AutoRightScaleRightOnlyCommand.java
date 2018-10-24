@@ -9,23 +9,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class AutoRightScaleCommand extends CommandGroup {
+public class AutoRightScaleRightOnlyCommand extends CommandGroup {
 	
 
-    public AutoRightScaleCommand() {
+    public AutoRightScaleRightOnlyCommand() {
     	
     	addSequential(new closeJawCommand(),.1);
-    	addSequential(new driveToXDistanceCommand(20,1));
-    	addSequential(new rotateToAngleCommmand(-20));
-    	addSequential(new liftUpCommand(),5);
-    	addSequential(new liftStopCommand(),.1);    
-    	addSequential(new driveToXDistanceCommand(3,.7));
+    	addParallel(new liftUpCommand(),2.3);
+    	addSequential(new driveToXDistanceCommand(25,1));   
+    	addSequential(new rotateToAngleCommmand(-90));
+    	//addSequential(new liftStopCommand(),.1);    
+    	//addSequential(new driveToXDistanceCommand(2.3,.7));
     	addSequential(new autointakecontroll(-.5),1);
-    	addSequential(new autointakecontroll(0),.2);
-    	addSequential(new driveToXDistanceCommand(-3,.7));
-       	addSequential(new liftDownCommand(),5);
-       	addSequential(new liftStopCommand(),.1);   
+    	addSequential(new autointakecontroll(0),.1);
+    	//addSequential(new driveToXDistanceCommand(-2,.7));
     	addSequential(new rotateToAngleCommmand(-180));
+       	addSequential(new liftDownCommand(),2.3);
+       	addSequential(new liftStopCommand(),.1);
+       	
 
     	
     	//String gamedata;

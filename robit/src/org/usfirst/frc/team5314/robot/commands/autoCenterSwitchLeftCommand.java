@@ -19,12 +19,15 @@ public class autoCenterSwitchLeftCommand extends CommandGroup {
 
         addSequential(new rotateToAngleCommmand(-30));
     	//addSequential(new DriveSetSpeedCommand(.0 , .0 , -.4 , .5));
-        addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , .9));
+        addSequential(new DriveSetSpeedCommand(.5 , .0 , 0 , 1.2));
     	addSequential(new driveStopCommand(),2);
     	addSequential(new rotateToAngleCommmand(0));
     	addSequential(new DriveSetSpeedCommand(.3, 0, 0, .5));
     	addSequential(new autointakecontroll(-5),1);
 		addSequential(new autointakecontroll(0),.2);
+		addSequential(new driveToXDistanceCommand(-1, .7));
+		addParallel(new  rotateToAngleCommmand(90));
+		addSequential(new liftDownCommand(),1);
     		//addSequential(new openJawCommand(),.1);
     	    	//String gamedata;
     	//gamedata=DriverStation.getInstance().getGameSpecificMessage();

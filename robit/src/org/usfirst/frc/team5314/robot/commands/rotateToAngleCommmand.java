@@ -18,7 +18,7 @@ public class rotateToAngleCommmand extends PIDCommand {
      getPIDController().setInputRange(-180.0, 180.0);
      getPIDController().setContinuous(true);
      getPIDController().setAbsoluteTolerance(1.5);
-     getPIDController().setOutputRange(-.4, .4); 
+     getPIDController().setOutputRange(-.6, .6); 
      angle=desiredAngle;
      requires(Robot.kDriveTrianSubsystem);
      
@@ -39,7 +39,7 @@ public class rotateToAngleCommmand extends PIDCommand {
     protected void usePIDOutput(double output) {
     	
     	int sign =(int)Math.signum(output);
-    	double minSpeed=.2;
+    	double minSpeed=.3;
     	double finaloutput=sign*Math.max(minSpeed, Math.abs(output));
     	Robot.kDriveTrianSubsystem.drive(0,0 , finaloutput, 0);
     	

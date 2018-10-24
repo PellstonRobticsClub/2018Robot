@@ -4,10 +4,10 @@ package org.usfirst.frc.team5314.robot.commands;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.ConditionalCommand;
 
-public class AutoRightScaleTestCommand extends ConditionalCommand {
+public class AutoRightScaleRightOnlyTestCommand extends ConditionalCommand {
 	
-	public AutoRightScaleTestCommand() {
-		super(new AutoRightScaleRightOnlyCommand(),new AutoRight2ScaleCommand());
+	public AutoRightScaleRightOnlyTestCommand() {
+		super(new AutoRightScaleRightOnlyCommand(),new Autodrivefoward());
 	}
 
 	@Override
